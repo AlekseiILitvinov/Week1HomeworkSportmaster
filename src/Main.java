@@ -13,16 +13,16 @@ public class Main {
 		int currentPurchase = 2550;
 
 		//Uncomment the lines below for extra interactivity
-		Scanner scanner = new Scanner(System.in);
-		do {
-			System.out.print("Please enter the total amount of previous purchases (rounded to roubles): ");
-			totalPurchases = scanner.nextInt();
-			System.out.print("Please enter the amount of the current purchase (rounded to roubles): ");
-			currentPurchase = scanner.nextInt();
-			if (totalPurchases < 0 || currentPurchase < 0){
-				System.out.println("Sorry, something went wrong, please try again");
-			}
-		} while (totalPurchases < 0 || currentPurchase < 0);
+//		Scanner scanner = new Scanner(System.in);
+//		do {
+//			System.out.print("Please enter the total amount of previous purchases (rounded to roubles): ");
+//			totalPurchases = scanner.nextInt();
+//			System.out.print("Please enter the amount of the current purchase (rounded to roubles): ");
+//			currentPurchase = scanner.nextInt();
+//			if (totalPurchases < 0 || currentPurchase < 0){
+//				System.out.println("Sorry, something went wrong, please try again");
+//			}
+//		} while (totalPurchases < 0 || currentPurchase < 0);
 
 
 		int bonusBase = currentPurchase / 1000;
@@ -50,7 +50,7 @@ public class Main {
 			System.out.println("You have reached the silver membership, your next purchase will grant you 70 points " +
 					"per 1000 roubles spent");
 		}
-		
+
 		// Useless here, but for a real case we would want the new purchase added to
 		// the total and put back into database
 		totalPurchases += currentPurchase;
