@@ -9,8 +9,6 @@ import java.util.Scanner;
  */
 public class Main {
 	public static void main(String[] args) {
-		int totalPurchases=0;
-		int currentPurchase=0;
 		int thresholdBlue = 1;
 		int thresholdSilver = 15_000;
 		int thresholdGold = 150_000;
@@ -19,6 +17,9 @@ public class Main {
 		int bonusGold = 100;
 
 		Scanner scanner = new Scanner(System.in);
+
+		int totalPurchases;
+		int currentPurchase;
 		do {
 			System.out.print("Please enter the total amount of previous purchases (rounded to roubles): ");
 			totalPurchases = scanner.nextInt();
