@@ -9,51 +9,57 @@ import java.util.Scanner;
  */
 public class Main {
 	public static void main(String[] args) {
-		int totalPurchases = 9000;
-		int currentPurchase = 2550;
+		int totalPurchases;
+		int currentPurchase;
+		int thresholdBlue = 1;
+		int thresholdSilver = 15_000;
+		int thresholdGold = 150_000;
+		int bonusBlue = 50;
+		int bonusSilver = 70;
+		int bonusGold = 100;
+		int bonusAwarded;
 
-		//Uncomment the lines below for extra interactivity
-//		Scanner scanner = new Scanner(System.in);
-//		do {
-//			System.out.print("Please enter the total amount of previous purchases (rounded to roubles): ");
-//			totalPurchases = scanner.nextInt();
-//			System.out.print("Please enter the amount of the current purchase (rounded to roubles): ");
-//			currentPurchase = scanner.nextInt();
-//			if (totalPurchases < 0 || currentPurchase < 0){
-//				System.out.println("Sorry, something went wrong, please try again");
-//			}
-//		} while (totalPurchases < 0 || currentPurchase < 0);
-
+		Scanner scanner = new Scanner(System.in);
+		do {
+			System.out.print("Please enter the total amount of previous purchases (rounded to roubles): ");
+			totalPurchases = scanner.nextInt();
+			System.out.print("Please enter the amount of the current purchase (rounded to roubles): ");
+			currentPurchase = scanner.nextInt();
+			if (totalPurchases < 0 || currentPurchase < 0) {
+				System.out.println("Sorry, something went wrong, please try again");
+			}
+		} while (totalPurchases < 0 || currentPurchase < 0);
 
 		int bonusBase = currentPurchase / 1000;
-		int bonusMultiplier = 50; //Base bonus for Blue membership card
+		int bonusMultiplier = bonusBlue;
 
-		if (totalPurchases >= 150_000) {
-			bonusMultiplier = 100;
-		} else if (totalPurchases >= 15_000) {
-			bonusMultiplier = 70;
-		} else if (totalPurchases < 1){
+		if (totalPurchases >= thresholdGold) {
+			bonusMultiplier = bonusGold;
+		} else if (totalPurchases >= thresholdSilver) {
+			bonusMultiplier = bonusSilver;
+		} else if (totalPurchases < thresholdBlue) {
 			bonusMultiplier = 0;
 		}
 
-		if (bonusMultiplier == 0){
+		bonusAwarded = bonusBase * bonusMultiplier;
+
+		if (bonusMultiplier == 0) {
 			System.out.println("We are sorry, but no bonuses are awarded until you have purchased at least once " +
 					"(for at least 1 rouble)");
 		} else {
-			System.out.println("You have been awarded " + bonusBase * bonusMultiplier + " bonus points.");
+			System.out.println("You have been awarded " + bonusAwarded + " bonus points.");
 		}
 
-		if (totalPurchases < 150_000 && totalPurchases + currentPurchase >= 150_000) {
+		if (totalPurchases < thresholdGold && totalPurchases + currentPurchase >= thresholdGold) {
 			System.out.println("You have reached the golden membership, your next purchase will grant you 100 points " +
 					"per 1000 roubles spent");
-		} else if (totalPurchases < 15_000 && totalPurchases + currentPurchase >= 15_000){
+		} else if (totalPurchases < thresholdSilver && totalPurchases + currentPurchase >= thresholdSilver) {
 			System.out.println("You have reached the silver membership, your next purchase will grant you 70 points " +
 					"per 1000 roubles spent");
 		}
 
-		// Useless here, but for a real case we would want the new purchase added to
-		// the total and put back into database
 		totalPurchases += currentPurchase;
+		System.out.println("Your sum of purchases is now " + totalPurchases + " roubles. Thank you!");
 
 	}
 }
