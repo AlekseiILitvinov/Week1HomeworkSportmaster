@@ -9,15 +9,14 @@ import java.util.Scanner;
  */
 public class Main {
 	public static void main(String[] args) {
-		int totalPurchases;
-		int currentPurchase;
+		int totalPurchases=0;
+		int currentPurchase=0;
 		int thresholdBlue = 1;
 		int thresholdSilver = 15_000;
 		int thresholdGold = 150_000;
 		int bonusBlue = 50;
 		int bonusSilver = 70;
 		int bonusGold = 100;
-		int bonusAwarded;
 
 		Scanner scanner = new Scanner(System.in);
 		do {
@@ -41,7 +40,7 @@ public class Main {
 			bonusMultiplier = 0;
 		}
 
-		bonusAwarded = bonusBase * bonusMultiplier;
+		int bonusAwarded = bonusBase * bonusMultiplier;
 
 		if (bonusMultiplier == 0) {
 			System.out.println("We are sorry, but no bonuses are awarded until you have purchased at least once " +
